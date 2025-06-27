@@ -1,0 +1,462 @@
+/* CSS Variables for Theming */
+:root {
+    --bg-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --secondary-text-color: #555;
+    --border-color: #eee;
+    --input-border: #ddd;
+    --error-color: #dc3545;
+    --primary-btn-bg: #007bff;
+    --primary-btn-hover-bg: #0056b3;
+    --secondary-btn-bg: #6c757d;
+    --secondary-btn-hover-bg: #5a6268;
+    --success-color: #28a745;
+    --warning-btn-bg: #ffc107;
+    --warning-btn-hover-bg: #e0a800;
+    --share-whatsapp: #25d366;
+    --share-whatsapp-hover: #1da851;
+    --share-telegram: #0088cc;
+    --share-telegram-hover: #006da0;
+    --share-email: #dc3545; /* This variable is no longer used but kept for consistency if needed elsewhere */
+    --share-email-hover: #c82333; /* This variable is no longer used */
+    --native-share-bg: #6f42c1;
+    --native-share-hover-bg: #5a359e;
+    --quick-fill-bg: #e9ecef;
+    --quick-fill-border: #ced4da;
+    --quick-fill-hover-bg: #d1d6db;
+}
+
+/* Dark Mode Theme */
+body.dark-mode {
+    --bg-color: #2c2c2c;
+    --container-bg: #3c3c3c;
+    --text-color: #f5f5f5;
+    --secondary-text-color: #cccccc;
+    --border-color: #555;
+    --input-border: #666;
+    --error-color: #ff6b6b;
+    --primary-btn-bg: #4a90e2;
+    --primary-btn-hover-bg: #357bd8;
+    --secondary-btn-bg: #888888;
+    --secondary-btn-hover-bg: #777777;
+    --success-color: #5cb85c;
+    --warning-btn-bg: #f0ad4e;
+    --warning-btn-hover-bg: #ec971f;
+    --quick-fill-bg: #4c4c4c;
+    --quick-fill-border: #5c5c5c;
+    --quick-fill-hover-bg: #6c6c6c;
+}
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    background-color: var(--container-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+h1, h2 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    transition: color 0.3s ease;
+}
+
+p {
+    color: var(--secondary-text-color);
+    margin-bottom: 15px;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+/* Theme Toggle */
+.theme-toggle-container {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.theme-toggle-button {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.theme-toggle-button:hover {
+    background-color: var(--quick-fill-bg);
+}
+
+/* Form Section */
+.form-section {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 0.95em;
+    transition: color 0.3s ease;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: calc(100% - 16px);
+    padding: 10px 8px;
+    margin-bottom: 3px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+input:focus {
+    border-color: var(--primary-btn-bg);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.error-text {
+    color: var(--error-color);
+    font-size: 0.8em;
+    display: block;
+    margin-top: 3px;
+    min-height: 1em;
+}
+
+.generate-qr-btn {
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background-color: var(--primary-btn-bg);
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.generate-qr-btn:hover {
+    background-color: var(--primary-btn-hover-bg);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+}
+
+/* Output Section */
+.output-section {
+    margin-top: 20px;
+}
+
+.qr-area, .link-area, .share-section, .history-section, .own-link-section {
+    background-color: var(--quick-fill-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.qr-img {
+    max-width: 200px;
+    height: auto;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.pay-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--success-color);
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.pay-btn:hover {
+    background-color: #218838;
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+}
+
+.link-display {
+    margin-top: 15px;
+    padding: 8px;
+    background-color: var(--container-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    word-break: break-all;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#upiLinkText, #ownLinkText {
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.copy-btn, .download-qr-btn, .download-combined-qr-btn {
+    background-color: var(--secondary-btn-bg);
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+    margin-top: 5px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.copy-btn:hover, .download-qr-btn:hover, .download-combined-qr-btn:hover {
+    background-color: var(--secondary-btn-hover-bg);
+}
+
+.copy-feedback {
+    display: block;
+    color: var(--success-color);
+    font-size: 0.8em;
+    margin-top: 5px;
+    min-height: 1em;
+}
+
+/* Share Section */
+.share-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.share-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border-radius: 25px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    min-width: auto;
+}
+
+/* Icon specific styling */
+.share-icon i {
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 1.2em; /* Make icons slightly larger */
+}
+
+.whatsapp-icon { background-color: var(--share-whatsapp); }
+.whatsapp-icon:hover { background-color: var(--share-whatsapp-hover); }
+.telegram-icon { background-color: var(--share-telegram); }
+.telegram-icon:hover { background-color: var(--share-telegram-hover); }
+/* .email-icon styles are no longer needed */
+
+.native-share-btn {
+    background-color: var(--native-share-bg);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-left: 0;
+    width: 100%;
+    display: flex; /* Make it a flex container for icon and text */
+    align-items: center;
+    justify-content: center;
+}
+.native-share-btn i {
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 1.2em; /* Make icons slightly larger */
+}
+
+.native-share-btn:hover {
+    background-color: var(--native-share-hover-bg);
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+
+/* Responsive Design (Further Adjustments) */
+@media (max-width: 400px) {
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.6em;
+    }
+    p {
+        font-size: 0.9em;
+    }
+    .generate-qr-btn, .pay-btn, .copy-btn, .native-share-btn, .share-icon, .history-clear-all, .download-qr-btn, .theme-toggle-button, .download-combined-qr-btn {
+        font-size: 0.9em;
+        padding: 10px 15px;
+    }
+}
+
+/* New feature specific styles */
+.amount-quick-fill {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    justify-content: center;
+}
+.amount-quick-fill button {
+    background-color: var(--quick-fill-bg);
+    border: 1px solid var(--quick-fill-border);
+    padding: 6px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.2s ease, border-color 0.3s ease, color 0.3s ease;
+    color: var(--text-color);
+}
+.amount-quick-fill button:hover {
+    background-color: var(--quick-fill-hover-bg);
+}
+
+.history-section {
+    margin-top: 20px;
+    padding: 15px;
+}
+.history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--container-bg);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.history-list li {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+    font-size: 0.8em;
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+.history-list li:last-child {
+    border-bottom: none;
+}
+.history-item-link {
+    word-break: break-all;
+    margin-right: 5px;
+    flex-grow: 1;
+    cursor: pointer;
+    color: var(--primary-btn-bg);
+    text-decoration: none;
+}
+.history-item-link:hover {
+    text-decoration: underline;
+}
+.history-delete-btn {
+    background-color: var(--error-color);
+    color: white;
+    border: none;
+    padding: 4px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.7em;
+    transition: background-color 0.2s ease;
+}
+.history-delete-btn:hover {
+    background-color: #c82333;
+}
+.history-clear-all {
+    background-color: var(--warning-btn-bg);
+    color: var(--text-color);
+    border: none;
+    padding: 8px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-top: 10px;
+    transition: background-color 0.2s ease, color 0.3s ease;
+}
+.history-clear-all:hover {
+    background-color: var(--warning-btn-hover-bg);
+}
+.no-history-message {
+    color: var(--secondary-text-color);
+    font-style: italic;
+    margin-top: 8px;
+    font-size: 0.8em;
+}
+
+/* Own Link Section Specifics */
+.own-link-section {
+    margin-top: 20px;
+}
+.own-link-display {
+    margin-top: 15px;
+    padding: 8px;
+    background-color: var(--container-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    word-break: break-all;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+}
