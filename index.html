@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay-G | UPI Link Generator</title>
+    <link rel="icon" type="image/x-icon" href="img/Screenshot 2024-01-18 195101-fotor-bg-remover-20240118195750.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <main class="container">
+        <div class="theme-toggle-container">
+            <button id="themeToggleButton" class="theme-toggle-button">Toggle Dark Mode</button>
+        </div>
+        <header>
+            <h1>UPI Link & QR Code Generator</h1>
+            <p>Quickly generate UPI payment links and QR codes.</p>
+        </header>
+
+        <section class="form-section">
+            <form id="upiForm">
+                <div class="input-group">
+                    <label for="upiId">Your UPI ID (e.g., mobile@upi, name@bank):</label>
+                    <input type="text" id="upiId" placeholder="Enter your UPI ID" required>
+                    <small class="error-text" id="upiIdError"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="payeeName">Your Name (Payee Name):</label>
+                    <input type="text" id="payeeName" placeholder="Enter your name" required>
+                    <small class="error-text" id="payeeNameError"></small>
+                </div>
+
+                <div class="input-group">
+                    <label for="amount">Amount (INR) (Optional):</label>
+                    <input type="number" id="amount" step="0.01" min="0.01" placeholder="Enter amount">
+                    <small class="error-text" id="amountError"></small>
+                    <div class="amount-quick-fill">
+                        <button type="button" data-amount="100">₹100</button>
+                        <button type="button" data-amount="500">₹500</button>
+                        <button type="button" data-amount="1000">₹1000</button>
+                        <button type="button" data-amount="2000">₹2000</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="transactionNote">Transaction Note (Optional):</label>
+                    <input type="text" id="transactionNote" placeholder="e.g., For coffee, Rent for June">
+                </div>
+
+                <button type="submit" class="generate-qr-btn">Generate QR & Link</button>
+            </form>
+        </section>
+
+        <section class="output-section">
+            <div class="qr-area hidden" id="qrOutputArea">
+                <h2>Scan QR & Pay using Any UPI App</h2>
+                <img src="" class="qr-img" id="qrCodeImage" alt="Generated QR Code for UPI Payment">
+                <button id="downloadQrButton" class="download-qr-btn">Download QR Code</button>
+                <button id="downloadCombinedQrButton" class="download-combined-qr-btn">Download Payment Banner</button>
+            </div>
+
+            <div class="link-area hidden" id="linkOutputArea">
+                <h2>Or Click to Pay</h2>
+                <a href="#" id="upiLinkButton" class="pay-btn" target="_blank">Pay Now</a>
+                <div class="link-display">
+                    <span id="upiLinkText"></span>
+                    <button class="copy-btn" id="copyLinkButton">Copy Payment Link</button>
+                    <small class="copy-feedback" id="copyFeedback"></small>
+                </div>
+            </div>
+        </section>
+
+        <section class="share-section hidden" id="shareSection">
+            <h2>Share This Payment Link</h2>
+            <div class="share-buttons">
+                <a id="whatsapp-share" href="#" target="_blank" class="share-icon whatsapp-icon"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a id="telegram-share" href="#" target="_blank" class="share-icon telegram-icon"><i class="fab fa-telegram-plane"></i> Telegram</a>
+                <button id="nativeShareButton" class="native-share-btn hidden"><i class="fas fa-share-alt"></i> Share via Device</button>
+            </div>
+        </section>
+
+        <section class="own-link-section">
+            <h2>Generate Your Sharable Banner Link</h2>
+            <p>Share this link to directly display a payment banner to others:</p>
+            <button id="generateOwnLinkButton" class="generate-qr-btn">Get My Sharable Banner Link</button>
+            <div class="own-link-display hidden" id="ownLinkOutputArea">
+                <span id="ownLinkText"></span>
+                <button class="copy-btn" id="copyOwnLinkButton">Copy My Link</button>
+                <small class="copy-feedback" id="copyOwnLinkFeedback"></small>
+            </div>
+        </section>
+
+        <section class="history-section">
+            <h2>Payment Request History</h2>
+            <ul class="history-list" id="historyList">
+                </ul>
+            <p class="no-history-message hidden" id="noHistoryMessage">No payment requests generated yet.</p>
+            <button class="history-clear-all hidden" id="clearAllHistoryButton">Clear All History</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

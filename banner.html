@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Payment Request</title>
+    <link rel="icon" type="image/x-icon" href="img/Screenshot 2024-01-18 195101-fotor-bg-remover-20240118195750.png">
+    <!-- Poppins font for modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f5f8ff; /* Light, calming background */
+            --card-bg: #ffffff;
+            --text-color-primary: #2c3e50; /* Darker text for readability */
+            --text-color-secondary: #7f8c8d;
+            --highlight-color: #28a745; /* Green for amount/success */
+            --button-primary: #007bff; /* Blue for main action */
+            --button-primary-hover: #0056b3;
+            --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --border-radius-card: 15px;
+            --border-radius-button: 30px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            color: var(--text-color-primary);
+            text-align: center;
+        }
+
+        .payment-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius-card);
+            box-shadow: var(--shadow-light);
+            max-width: 380px; /* Optimized width for mobile view */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px; /* Spacing between main sections */
+        }
+
+        .logo-section img {
+            max-width: 120px; /* Adjust logo size */
+            height: auto;
+            border-radius: 8px; /* Slight roundness for logo */
+        }
+
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 15px;
+        }
+
+        .qr-section h2 {
+            font-size: 1.5em; /* "Scan to Pay" heading */
+            color: var(--text-color-primary);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .qr-code-wrapper {
+            padding: 10px; /* Padding inside the QR box */
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for QR */
+        }
+        .qr-code-wrapper img {
+            display: block;
+            max-width: 180px; /* QR code size */
+            height: auto;
+            width: 100%; /* Ensure it's responsive within its wrapper */
+        }
+
+        .payee-details {
+            font-size: 1.1em;
+            color: var(--text-color-primary);
+            font-weight: 600;
+            margin-top: -10px; /* Closer to QR */
+        }
+
+        .amount-display {
+            font-size: 1.8em;
+            color: var(--highlight-color);
+            font-weight: 700;
+            margin-top: -15px; /* Closer to payee details */
+        }
+
+        .upi-apps-section {
+            width: 90%; /* UPI apps image takes most of the width */
+        }
+        .upi-apps-section p {
+            font-size: 0.9em;
+            color: var(--text-color-secondary);
+            margin-bottom: 10px;
+        }
+        .upi-apps-section img {
+            max-width: 100%; /* Ensure image scales */
+            height: auto;
+        }
+
+        .pay-now-button {
+            background-color: var(--button-primary);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: var(--border-radius-button);
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+            width: 100%; /* Full width button */
+            max-width: 250px; /* Max width for button */
+        }
+        .pay-now-button:hover {
+            background-color: var(--button-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+        }
+        .pay-now-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+        }
+
+        .error-area {
+            font-size: 0.9em;
+            color: #dc3545;
+            padding: 15px;
+            border: 1px solid #dc3545;
+            background-color: #f8d7da;
+            border-radius: 8px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        /* Utility class */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-card">
+        <div class="logo-section">
+            <img id="logoImage" src="https://i.ibb.co/GQsYHWtW/logo.png" alt="Company Logo">
+        </div>
+
+        <div class="qr-section">
+            <h2>Scan to Pay</h2>
+            <div class="qr-code-wrapper">
+                <img id="qrCodeImage" src="" alt="UPI QR Code">
+            </div>
+            <p class="payee-details" id="payeeDetails"></p>
+            <p class="amount-display hidden" id="amountDisplay"></p>
+        </div>
+
+        <div class="upi-apps-section">
+            <p>Accepted on all UPI Apps</p>
+            <img id="upiAppsImage" src="https://i.ibb.co/LDKX5n32/upi-apps.png" alt="Supported UPI Apps">
+        </div>
+
+        <a href="#" id="payNowButton" class="pay-now-button hidden" target="_blank" rel="noopener noreferrer">Pay Now</a>
+        
+        <div id="errorArea" class="error-area hidden"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoImage = document.getElementById('logoImage');
+            const qrCodeImage = document.getElementById('qrCodeImage');
+            const payeeDetails = document.getElementById('payeeDetails');
+            const amountDisplay = document.getElementById('amountDisplay');
+            const upiAppsImage = document.getElementById('upiAppsImage');
+            const payNowButton = document.getElementById('payNowButton');
+            const errorArea = document.getElementById('errorArea');
+
+            // Image URLs
+            const logoSrc = 'https://i.ibb.co/GQsYHWtW/logo.png';
+            const upiAppsCombinedImageSrc = 'https://i.ibb.co/LDKX5n32/upi-apps.png';
+
+            // Set static image sources
+            logoImage.src = logoSrc;
+            upiAppsImage.src = upiAppsCombinedImageSrc;
+
+            // Parse URL parameters
+            const params = new URLSearchParams(window.location.search);
+            const pa = params.get('pa'); // UPI ID
+            const pn = params.get('pn'); // Payee Name
+            const am = params.get('am'); // Amount (Optional)
+            const tn = params.get('tn'); // Transaction Note (Optional)
+
+            if (!pa || !pn) {
+                errorArea.classList.remove('hidden');
+                errorArea.textContent = 'Invalid link: Missing UPI ID or Payee Name.';
+                return;
+            }
+
+            const upiId = decodeURIComponent(pa);
+            const payeeName = decodeURIComponent(pn);
+            const amount = am ? parseFloat(decodeURIComponent(am)).toFixed(2) : null; // Keep null if not present
+            const transactionNote = tn ? decodeURIComponent(tn) : null;
+
+            // Construct UPI Link
+            let generatedUpiLink = `upi://pay?pa=${pa}&pn=${pn}&cu=INR`;
+            if (amount) {
+                generatedUpiLink += `&am=${encodeURIComponent(amount)}`;
+            }
+            if (transactionNote) {
+                generatedUpiLink += `&tn=${transactionNote}`;
+            }
+
+            // Generate QR Code URL
+            const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(generatedUpiLink)}`;
+            qrCodeImage.src = qrCodeUrl;
+            qrCodeImage.alt = `QR Code for UPI payment to ${payeeName}`;
+
+            // Update Text Details
+            payeeDetails.textContent = `Pay to: ${payeeName}`;
+            if (amount) {
+                amountDisplay.textContent = `Amount: ₹${amount}`;
+                amountDisplay.classList.remove('hidden');
+            } else {
+                amountDisplay.classList.add('hidden');
+            }
+
+            // Set Pay Now Button Link
+            payNowButton.href = generatedUpiLink;
+            payNowButton.classList.remove('hidden'); // Show the button
+        });
+    </script>
+</body>
+</html>
