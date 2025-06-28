@@ -7,6 +7,9 @@ Built with a modern UI inspired by Google's design principles, Pay-G makes reque
 
 ---
 
+## 🔍 Demo Site Review ([pay-g-etu.pages.dev](https://pay-g-etu.pages.dev/))
+
+---
 ## 🚀 Features
 
 - **UPI Link Generation**  
@@ -88,4 +91,42 @@ Built with a modern UI inspired by Google's design principles, Pay-G makes reque
 ## 💻 Local Setup (for Developers)
 
 ### 📁 Folder Structure
+
+your-project-folder/
+├── index.html
+├── script.js
+├── banner.html
+└── img/
+├── Screenshot_2024-01-18 195101-fotor-bg-remover-20240118195750.png
+└── upi-apps.png
+
+### 🛠 Setup Instructions
+1. **Clone or Download** this project.
+2. Ensure the **img/** folder contains your logo and `upi-apps.png`.
+3. Open `index.html` in your browser — all features should work offline.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repo.
+2. Create a new branch:  
+   `git checkout -b feature/your-feature-name`
+3. Make your changes.
+4. Commit your changes:  
+   `git commit -m 'Feat: Add new feature'`
+5. Push to GitHub:  
+   `git push origin feature/your-feature-name`
+6. Create a Pull Request.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.  
+See the [LICENSE](./LICENSE) file for details.
+
+Enjoy using **Pay-G** – the fastest way to share UPI payment links with style!
 
