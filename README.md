@@ -97,7 +97,7 @@ your-project-folder/
 ├── script.js
 ├── banner.html
 └── img/
-├── Screenshot_2024-01-18 195101-fotor-bg-remover-20240118195750.png
+├── Logo.png
 └── upi-apps.png
 
 ### 🛠 Setup Instructions
